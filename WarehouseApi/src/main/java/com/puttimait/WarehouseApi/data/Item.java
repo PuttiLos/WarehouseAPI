@@ -30,6 +30,16 @@ public class Item {
     private Date createDate;
     @Column(name = "UPDATE_DATE")
     private Date updateDate;
+    @Column(name = "UNIT")
+    private String unit;
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
 
     public long getId() {
         return id;
@@ -133,6 +143,7 @@ public class Item {
                 ", alert=" + alert +
                 ", createDate=" + createDate +
                 ", updateDate=" + updateDate +
+                ", unit='" + unit + '\'' +
                 '}';
     }
 }

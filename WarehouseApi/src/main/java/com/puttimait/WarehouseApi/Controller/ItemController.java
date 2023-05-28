@@ -2,6 +2,8 @@ package com.puttimait.WarehouseApi.Controller;
 
 import com.puttimait.WarehouseApi.BIZ.ItemBiz;
 import com.puttimait.WarehouseApi.data.Item;
+import com.puttimait.WarehouseApi.data.ItemDTO;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,5 +22,10 @@ public class ItemController {
     @RequestMapping(path = "/all", method = RequestMethod.GET)
     public List<Item> getAll() {
         return this.itemBiz.getAll();
+    }
+
+    @RequestMapping(path = "/add", method = RequestMethod.POST)
+    public long addOne(@RequestBody List<ItemDTO> req){
+        return this.itemBiz.addItems(req);
     }
 }
