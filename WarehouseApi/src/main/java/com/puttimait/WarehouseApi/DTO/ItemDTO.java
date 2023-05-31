@@ -1,8 +1,9 @@
-package com.puttimait.WarehouseApi.data;
+package com.puttimait.WarehouseApi.DTO;
 
 import java.util.Date;
 
 public class ItemDTO {
+    private long id = -1;
     private String name = "";
     private String alternateName = "";
     private long provider = 0;
@@ -101,5 +102,13 @@ public class ItemDTO {
 
     public void setUnit(String unit) {
         this.unit = unit;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

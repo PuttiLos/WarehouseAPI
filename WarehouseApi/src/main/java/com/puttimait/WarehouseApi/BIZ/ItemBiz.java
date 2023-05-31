@@ -1,9 +1,13 @@
 package com.puttimait.WarehouseApi.BIZ;
 
+import com.puttimait.WarehouseApi.DTO.ItemReq;
+import com.puttimait.WarehouseApi.DTO.ItemRes;
 import com.puttimait.WarehouseApi.data.Item;
-import com.puttimait.WarehouseApi.data.ItemDTO;
+import com.puttimait.WarehouseApi.DTO.ItemDTO;
 import com.puttimait.WarehouseApi.data.ItemRepository;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -35,5 +39,17 @@ public class ItemBiz {
             }
         }
         return success;
+    }
+    public ItemRes getItemsWithCriteria(ItemReq req){
+        List<Item> items = this.itemRepository.queryItemByNameContainsIgnoreCaseOrAlternateNameContainingIgnoreCase(req.getCriteria().getName(), req.getCriteria().getName(), PageRequest.of(req.getPageIndex(), req.getPageSize())).toList();
+        ArrayList<ItemDTO> itemRes = new ArrayList<>();
+        items.forEach(item -> {
+            itemRes.add(new ModelMapper().map(item,ItemDTO.class) );
+        });
+        ItemRes res = new ItemRes();
+        res.setItems(itemRes);
+        res.setTotal(this.itemRepository.countItemsByNameContainingIgnoreCaseOrAlternateNameContainingIgnoreCase(req.getCriteria().getName(),req.getCriteria().getName()));
+
+        return res;
     }
 }
