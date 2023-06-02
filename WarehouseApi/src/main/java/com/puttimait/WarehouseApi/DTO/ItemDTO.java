@@ -7,8 +7,8 @@ public class ItemDTO {
     private String name = "";
     private String alternateName = "";
     private long provider = 0;
-    private long cost_price = 0;
-    private long selling_price = 0;
+    private long costPrice = 0;
+    private long sellingPrice = 0;
     private long shelf = 0;
     private long stock = 0;
     private long alert = 0;
@@ -39,23 +39,6 @@ public class ItemDTO {
     public void setProvider(long provider) {
         this.provider = provider;
     }
-
-    public long getCost_price() {
-        return cost_price;
-    }
-
-    public void setCost_price(long cost_price) {
-        this.cost_price = cost_price;
-    }
-
-    public long getSelling_price() {
-        return selling_price;
-    }
-
-    public void setSelling_price(long selling_price) {
-        this.selling_price = selling_price;
-    }
-
     public long getShelf() {
         return shelf;
     }
@@ -110,5 +93,21 @@ public class ItemDTO {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public long getCostPrice() {
+        return costPrice;
+    }
+
+    public void setCostPrice(long costPrice) {
+        this.costPrice = costPrice;
+    }
+
+    public long getSellingPrice() {
+        return sellingPrice;
+    }
+
+    public void setSellingPrice(long sellingPrice) {
+        this.sellingPrice = sellingPrice;
     }
 }
