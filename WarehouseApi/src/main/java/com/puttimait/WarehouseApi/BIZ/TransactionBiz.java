@@ -1,5 +1,7 @@
 package com.puttimait.WarehouseApi.BIZ;
 
+import com.puttimait.WarehouseApi.DTO.TransactionDTO;
+import com.puttimait.WarehouseApi.DTO.TransactionItemDTO;
 import com.puttimait.WarehouseApi.DTO.TransactionReq;
 import com.puttimait.WarehouseApi.DTO.TransactionRes;
 import com.puttimait.WarehouseApi.data.Transaction;
@@ -10,8 +12,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TransactionBiz {
@@ -38,5 +42,18 @@ public class TransactionBiz {
         return new TransactionRes("Success!");
 
 
+    }
+    public TransactionReq getTransactionByTransactionId(long id){
+        Optional<Transaction> transaction = this.transactionRepository.findById(id);
+        TransactionDTO transactionHeader = new ModelMapper().map(transaction.get(), TransactionDTO.class);
+        List<TransactionItem> items = this.transactionItemRepository.getTransactionItemsByTransactionId(id);
+        List<TransactionItemDTO> transactionItems = new ArrayList<>();
+        items.forEach(item -> {
+            transactionItems.add(new ModelMapper().map(item, TransactionItemDTO.class));
+        });
+        TransactionReq result = new TransactionReq();
+        result.setTransactionHeader(transactionHeader);
+        result.setTransactionItems(transactionItems);
+        return result;
     }
 }

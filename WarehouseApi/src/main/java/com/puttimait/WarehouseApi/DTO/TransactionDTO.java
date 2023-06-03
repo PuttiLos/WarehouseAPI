@@ -1,6 +1,10 @@
 package com.puttimait.WarehouseApi.DTO;
 
+import com.puttimait.WarehouseApi.data.TransactionItem;
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class TransactionDTO {
 

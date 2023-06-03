@@ -2,6 +2,7 @@ package com.puttimait.WarehouseApi.data;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "TRANSACTION")
@@ -14,6 +15,7 @@ public class Transaction {
     private String buyerName;
     @Column(name = "TRANSACTION_DATE")
     private Date date;
+
 
     public long getId() {
         return id;
